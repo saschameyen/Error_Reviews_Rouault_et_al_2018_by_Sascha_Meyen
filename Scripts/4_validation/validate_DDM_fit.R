@@ -21,7 +21,19 @@ validate_DDM_fit <- function(original_dat_exp_2, full_perceptual_task_dat_exp_2)
                       full_perceptual_task_dat_exp_2,
                       i_participant                 )
 
-  invisible(dev.off())
+  dev.off()
+
+  cat("Drift-Diffusion-Model Fit
+
+  I could not reproduce the drift-diffusion model (DDM) fits with their
+  referenced functions. However, I did a small simulation reanalysis based on
+  which the parameters seem valid. There is only one small inaccuracy:
+  Non-decision times are off by 300 ms. This is likely due to the fact that
+  the authors inconsistently computed the response times including the 300 ms
+  stimulus presentation time (for the DDM fit) and without (for compiling the
+  data set).
+
+  ")
 }
 
 inspect_participant <- function(original_dat_exp_2            , 

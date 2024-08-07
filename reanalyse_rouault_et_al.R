@@ -37,67 +37,95 @@
 #' 
 ################################################################################
 
-# Clear workspace and load all scripts -----------------------------------------
+# Clear workspace and load all scripts and packages ----------------------------
 rm(list = ls())
 source('Utilities/load_all_scripts_in_project.R')
+load_required_packages()
 
-# Install required packages ----------------------------------------------------
-
-# install.packages("ggplot2")
-# install.packages("gridExtra")
-# install.packages("lme4")
-# install.packages("plyr")
-# install.packages("psych")
-# install.packages("GPArotation")
-# install.packages("paran")
-# install.packages("reshape")
-# install.packages("polycor")
-# install.packages("nFactors")
-# install.packages("R.matlab")  
-# install.packages("doBy")
-# install.packages("pwr")
-# install.packages("gmgm")
-# install.packages("parallel")
-
-# Experiment 1 -----------------------------------------------------------------
+# Experiment 1 Data Reproduction -----------------------------------------------
 full_perceptual_task_dat_exp_1 <- cache_results("get_full_perceptual_task_dat_exp_1()")
-head(full_perceptual_task_dat_exp_1)
 
-reproduced_dat_exp_1 <- cache_results("reproduce_summary_data_exp_1()", overwrite = TRUE)
+reproduced_dat_exp_1 <- cache_results("reproduce_summary_data_exp_1()")
 reproduced_dat_exp_1 <- reproduce_factor_analysis_results(reproduced_dat = reproduced_dat_exp_1)
-head(reproduced_dat_exp_1)
 
-# For inspection of my validation, navigate to the relevantion scripts in the
-# Scripts/validation/ folder after running the data loading functions in this
-# main script.
-
-validate_difficulty_results(full_perceptual_task_dat_exp_1)
-
-validate_power_analysis(reproduced_dat_exp_1)
-
-# Experiment 2 -----------------------------------------------------------------
+# Experiment 2 Data Reproduction -----------------------------------------------
 original_dat_exp_2 <- cache_results("extract_original_summary_data()")
-head(original_dat_exp_2)
 
 full_perceptual_task_dat_exp_2 <- cache_results("get_full_perceptual_task_dat_exp_2()")
 
-reproduced_dat_exp_2 <- cache_results("reproduce_summary_data_exp_2()", 
-                                      overwrite = TRUE)
+reproduced_dat_exp_2 <- cache_results("reproduce_summary_data_exp_2()")
 reproduced_dat_exp_2 <- reproduce_factor_analysis_results(reproduced_dat = reproduced_dat_exp_2)
+
+# Labeling the Factors ---------------------------------------------------------
+
+# The authors gave labels to the three factors in Experiment 2
+factor_indices <- ncol(reproduced_dat_exp_2)-(2:0)
+names(reproduced_dat_exp_2)[factor_indices] <- c("AD", "Compul", "SW")
+
+# According to a factor loading comparion, the factors in Experiment 1 are
+# ordered differently. See factor loading plot in validate_factor_analysis() below.
+factor_indices <- ncol(reproduced_dat_exp_1)-(2:0)
+names(reproduced_dat_exp_1)[factor_indices] <- c("AD", "SW", "Compul")
+
+# Summary of Available Data ---------------------------------------------------------------
+
+# Now we have reproduced the data of Experiment 1 with the perceptual task
+# information (one row one trial, many rows for each participant) as well as
+# the participant data (one row per participant, aggregated values from the
+# perceptual task plus questionnaire information.
+head(full_perceptual_task_dat_exp_1)
+head(reproduced_dat_exp_1)
+
+# We have the same for Experiment 2. In addition, we have the original data
+# that was produced from their code.
+head(full_perceptual_task_dat_exp_2)
 head(reproduced_dat_exp_2)
+head(original_dat_exp_2)
 
-validate_original_vs_reproduced_data_exp_2(original_dat_exp_2, reproduced_dat_exp_2)
+# Validation -------------------------------------------------------------------
 
-validate_m_ratio(original_dat_exp_2, reproduced_dat_exp_2)
+# There is one function for each aspect that I validated beyond the
+# reproduction of the data. Each function prints a string with my evaluation.
+# For details, check the function definitions.
 
-validate_factor_analysis(original_dat_exp_2, reproduced_dat_exp_2)
+validate_exclusions(full_perceptual_task_dat_exp_1,
+                    full_perceptual_task_dat_exp_2)
 
-validate_regression(reproduced_dat_exp_2)
+validate_difficulty_binning(full_perceptual_task_dat_exp_1)
 
-validate_model_comparison(reproduced_dat_exp_2)
+validate_power_analysis(reproduced_dat_exp_1)
+
+validate_original_vs_reproduced_data_exp_2(original_dat_exp_2,
+                                           reproduced_dat_exp_2)
 
 validate_mturk_sample(reproduced_dat_exp_2)
 
-validate_staircase_procedure(original_dat_exp_2, reproduced_dat_exp_2)
+validate_DDM_fit(original_dat_exp_2,
+                 full_perceptual_task_dat_exp_2)
 
-validate_DDM_fit(original_dat_exp_2, full_perceptual_task_dat_exp_2)
+validate_m_ratio(original_dat_exp_2,
+                 reproduced_dat_exp_2)
+
+validate_model_comparison(reproduced_dat_exp_2,
+                          original_dat_exp_2)
+
+validate_staircase_procedure(original_dat_exp_2,
+                             reproduced_dat_exp_2)
+
+validate_factor_analysis(reproduced_dat_exp_1,
+                         original_dat_exp_2,
+                         reproduced_dat_exp_2)
+
+validate_regression(reproduced_dat_exp_1,
+                    reproduced_dat_exp_2)
+
+
+
+
+
+
+
+# TODO
+# reliability analysis for m-ratio
+
+

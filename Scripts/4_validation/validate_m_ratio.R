@@ -1,5 +1,6 @@
 # I validated whether the M-Ratio fits are reasonably reproducible.
-validate_m_ratio <- function(original_dat_exp_2, reproduced_dat_exp_2)
+validate_m_ratio <- function(original_dat_exp_2,
+                             reproduced_dat_exp_2)
 {
   # Their M-Ratio values deviate from my reproduction. This is due to the
   # fitting method they used, which they did in Matlab. I have used a
@@ -17,5 +18,13 @@ validate_m_ratio <- function(original_dat_exp_2, reproduced_dat_exp_2)
   plot(original_dat_exp_2$mRatio[s], reproduced_dat_exp_2$m_ratio[s])
   cor(original_dat_exp_2$mRatio[s], reproduced_dat_exp_2$m_ratio[s])
 
-  invisible(dev.off())
+  dev.off()
+
+  cat("M-Ratio Fit
+
+  I chose another M-Ratio fit than the authors and found deviating values.
+  After accounting for extreme outliers, there is a relatively good
+  correlation between my and their M-Ratio values.
+
+  ")
 }

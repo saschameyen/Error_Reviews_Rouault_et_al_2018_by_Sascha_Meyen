@@ -1,6 +1,3 @@
-# I validated that the Mechanical Turk sample yielded similar mean scores on
-# the psychiatric screening questionnaires as the reference populations that
-# were used in the original studies of these questionnaires. 
 validate_mturk_sample <- function(reproduced_dat_exp_2)
 {
   # OC patients in the original study had a median of 25, other patients had 7
@@ -19,5 +16,14 @@ validate_mturk_sample <- function(reproduced_dat_exp_2)
   mean(reproduced_dat_exp_2$zung) # Mean score in Exp. 2: 37.5, very consistent
   mean(reproduced_dat_exp_2$zung > 48)
 
-  invisible()
+  dev.off()
+
+  cat("MTurk Sample
+
+  The Mechanical Turk sample yielded similar mean scores on the psychiatric
+  screening questionnaires as the reference populations that were used in the
+  original studies of these questionnaires. To my surprise, this seems like a
+  fairly comparable population.
+
+  ")
 }

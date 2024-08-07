@@ -21,6 +21,12 @@ validate_power_analysis <- function(reproduced_dat_exp_1)
   library(pwr)
   pwr.r.test(n = NULL, r = .13 , power = .8)
   pwr.r.test(n = NULL, r = .125, power = .8)
+  
+  cat("Power Analysis
 
-  invisible()
+  The regression coefficient based on which they calculated the sample size
+  for Experiment 2 is closely reproduced. Slight deviations would not
+  drastically change the number of required participants. No problem here.
+
+  ")
 }

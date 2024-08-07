@@ -1,14 +1,9 @@
-validate_difficulty_results <- function(full_perceptual_task_dat_exp_1)
+validate_difficulty_binning <- function(full_perceptual_task_dat_exp_1)
 {
-  # Some trials are missing for participants. There was probably an exclusion
-  # criterion on RTs.
-  table(full_perceptual_task_dat_exp_1$subj_id)
-  head(full_perceptual_task_dat_exp_1)
-  summary(as.numeric(table(full_perceptual_task_dat_exp_1$subj_id) / 210))
-
   # In the paper, stimulus deviations (how many more dots were in on compared
-  # to the other dot cloud) was binned into 6 difficulty bins. The data
-  # overall looks very clean so that the binning seems almost not necessary.
+  # to the other dot cloud) was binned into 6 difficulty bins. But there was
+  # no justification for this and it seemed to have been done post hoc. So
+  # here I check whether a different binning would have changed results.
   coherence_accuracy_dat <- aggregate(data = full_perceptual_task_dat_exp_1, 
                                       correct ~ stimdevi                   , 
                                       mean                                 )
@@ -32,5 +27,15 @@ validate_difficulty_results <- function(full_perceptual_task_dat_exp_1)
   confidences <- confidences / 6
   hist(confidences, seq(0, 1, .015))
 
-  invisible(dev.off())
+  dev.off()
+  
+
+  cat("Binning of Stimulus Difficulty
+
+  Even though binning of stimulus difficulty seems to have been done post hoc
+  without justfication, the results look very smooth so that there is no
+  doubt about the validity of their reports on accuracy and RT relative to
+  the stimulus difficulty in Experiment 1.
+
+  ")
 }
