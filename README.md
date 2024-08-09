@@ -2,6 +2,7 @@ Run the R file in the root folder (reanalyse_rouault_et_al.R). The working direc
 
 For an easy access to the results that you should see if you run these scripts, here is the output it generates for me:
 
+```
 #  -----------------------------------------------------------------------------
 
 > eval(parse("C:\\Users\\saschameyen\\Desktop\\Error_Reviews_Rouault_et_al_201$  
@@ -135,3 +136,4 @@ Evaluate Factors of Experiment 2 in Experiment 1
                                                                                  
                                                                                  
 #  -----------------------------------------------------------------------------
+```
