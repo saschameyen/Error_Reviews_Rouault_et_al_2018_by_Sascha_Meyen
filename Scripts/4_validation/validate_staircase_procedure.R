@@ -28,5 +28,5 @@ validate_staircase_procedure <- function(original_dat_exp_2,
   seems to be no problem here. There were no noteworthy difference in the
   variability of the staircases between participants.
 
-  ")
+  \n")
 }

@@ -18,6 +18,12 @@ validate_m_ratio <- function(original_dat_exp_2,
   plot(original_dat_exp_2$mRatio[s], reproduced_dat_exp_2$m_ratio[s])
   cor(original_dat_exp_2$mRatio[s], reproduced_dat_exp_2$m_ratio[s])
 
+  # From Matlab fit
+  m_ratios <- read.csv("Input/exp_2_m_ratios.csv",
+                     header = FALSE)$V1
+  plot(original_dat_exp_2$mRatio, m_ratios)
+  cor(original_dat_exp_2$mRatio, m_ratios)
+
   dev.off()
 
   cat("M-Ratio Fit
@@ -26,5 +32,5 @@ validate_m_ratio <- function(original_dat_exp_2,
   After accounting for extreme outliers, there is a relatively good
   correlation between my and their M-Ratio values.
 
-  ")
+  \n")
 }

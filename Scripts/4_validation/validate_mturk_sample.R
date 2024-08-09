@@ -25,5 +25,5 @@ validate_mturk_sample <- function(reproduced_dat_exp_2)
   original studies of these questionnaires. To my surprise, this seems like a
   fairly comparable population.
 
-  ")
+  \n")
 }

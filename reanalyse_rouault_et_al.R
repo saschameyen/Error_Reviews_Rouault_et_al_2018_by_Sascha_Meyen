@@ -106,6 +106,9 @@ validate_DDM_fit(original_dat_exp_2,
 validate_m_ratio(original_dat_exp_2,
                  reproduced_dat_exp_2)
 
+reproduced_dat_exp_1 <- overwrite_m_ratio_from_MATLAB_fit_exp_1(reproduced_dat_exp_1)
+reproduced_dat_exp_2 <- overwrite_m_ratio_from_MATLAB_fit_exp_2(reproduced_dat_exp_2)
+
 validate_model_comparison(reproduced_dat_exp_2,
                           original_dat_exp_2)
 
@@ -116,16 +119,13 @@ validate_factor_analysis(reproduced_dat_exp_1,
                          original_dat_exp_2,
                          reproduced_dat_exp_2)
 
+validate_reliabilities(full_perceptual_task_dat_exp_1,
+                       full_perceptual_task_dat_exp_2)
+
 validate_regression(reproduced_dat_exp_1,
                     reproduced_dat_exp_2)
 
-
-
-
-
-
-
-# TODO
-# reliability analysis for m-ratio
+validate_exp_2_factors_in_exp_1(reproduced_dat_exp_1,
+                                reproduced_dat_exp_2)
 
 

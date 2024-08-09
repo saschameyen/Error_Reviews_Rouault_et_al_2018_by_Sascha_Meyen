@@ -37,5 +37,5 @@ validate_difficulty_binning <- function(full_perceptual_task_dat_exp_1)
   doubt about the validity of their reports on accuracy and RT relative to
   the stimulus difficulty in Experiment 1.
 
-  ")
+  \n")
 }

@@ -1,6 +1,12 @@
-get_regression_coefficients <- function(dat)
+get_regression_coefficients <- function(dat                                                            ,
+                                        regressands = c("z_accuracy", "z_mean_confidence", "z_m_ratio"),
+                                        regressors  = c("z_AD", "z_Compul", "z_SW")                    )
 {
   # Z-Transform relevant variables
+  dat$z_zung            <- z_transform(dat$zung)
+  dat$z_anxiety         <- z_transform(dat$anxiety)
+  dat$z_ocir            <- z_transform(dat$ocir)
+  dat$z_liebowitz       <- z_transform(dat$liebowitz)
   dat$z_gender          <- z_transform(dat$gender)
   dat$z_age             <- z_transform(dat$age)
   dat$z_iq              <- z_transform(dat$iq)
@@ -14,11 +20,11 @@ get_regression_coefficients <- function(dat)
   # Go through all dependent and independent variable combinations and
   # construct a regression model with covariates gender, age, and IQ. Extract
   # the slope coefficient for the respective independent variable.
-  regrassands <- c("z_accuracy", "z_mean_confidence", "z_m_ratio")
-  regressors  <- c("z_AD", "z_Compul", "z_SW")
+  
+  
 
   coef_dat <- data.frame()
-  for (regressand in regrassands)
+  for (regressand in regressands)
   {
     for (regressor in regressors)
     {
@@ -28,10 +34,12 @@ get_regression_coefficients <- function(dat)
                                       dat[, regressor])
       coefficients <- summary(model)$coefficients
       coef_dat <- rbind(coef_dat,
-                        data.frame(regressor   = regressor         ,
-                                   regressand  = regressand        ,
-                                   coefficient = coefficients[5, 1],
-                                   se          = coefficients[5, 2]))
+                        data.frame(regressor   = regressor           ,
+                                   regressand  = regressand          ,
+                                   coefficient = coefficients[5, 1]  ,
+                                   se          = coefficients[5, 2]  ,
+                                   CI_lower    = confint(model)[5, 1],
+                                   CI_upper    = confint(model)[5, 2]))
     }
   }
   rownames(coef_dat) <- NULL

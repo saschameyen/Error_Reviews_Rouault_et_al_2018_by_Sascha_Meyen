@@ -3,16 +3,18 @@ validate_factor_analysis <- function(reproduced_dat_exp_1,
                                      original_dat_exp_2,
                                      reproduced_dat_exp_2)
 {
+  # Around factor analysis results are very consistent to those of the
+  # authors.
   plot(original_dat_exp_2$AD, reproduced_dat_exp_2$AD)
   plot(original_dat_exp_2$Compul, reproduced_dat_exp_2$Compul)
   plot(original_dat_exp_2$SW, reproduced_dat_exp_2$SW)
 
   # Preparing loadings of Experiment 1 to be comparable to those of Experiment 2
   loadings_1 <- reproduce_factor_analysis_results(reproduced_dat = reproduced_dat_exp_1,
-                                                   should_return_loadings = TRUE)
+                                                  should_return_loadings = TRUE)
 
   loadings_2 <- reproduce_factor_analysis_results(reproduced_dat = reproduced_dat_exp_2,
-                                                   should_return_loadings = TRUE)
+                                                  should_return_loadings = TRUE)
 
   items_in_both_experiments <- intersect(rownames(loadings_1),
                                          rownames(loadings_2))
@@ -32,6 +34,22 @@ validate_factor_analysis <- function(reproduced_dat_exp_1,
     if (length(idx) > 0) loadings_1_sorted_spaced[i, ] <- loadings_1_sorted[idx, ]
   }
 
+  # Visualize
+  visualize_factor_loadings(loadings_1_sorted, loadings_2)
+  
+  dev.off()
+
+  cat("Factor Analysis in Experiment 1
+
+  The factor solution of Experiment 1 mirrors that of Experiment 2. There are
+  three distinct factors for anxious-depression, compulsiveness, and social
+  withdrawal.
+
+  \n")
+}
+
+visualize_factor_loadings <- function(loadings_1_sorted_spaced, loadings_2)
+{
   if (dev.cur() != 1) dev.off()
   dev.new(width = 16, height = 7)
   layout(matrix(c(1, 1, 4, 4, 7,
@@ -92,7 +110,7 @@ validate_factor_analysis <- function(reproduced_dat_exp_1,
          border = 0)
   plot(1, 1, type = 'n',
        xlab = '', ylab = '', axes = FALSE)
-  par(mar = mar.default)
+  par(mar = mar.default)  
 }
 
 conversion_map <- matrix(c("^alcohol+"      , rgb(208/255, 109/255, 176/255),

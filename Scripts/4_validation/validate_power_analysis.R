@@ -28,5 +28,5 @@ validate_power_analysis <- function(reproduced_dat_exp_1)
   for Experiment 2 is closely reproduced. Slight deviations would not
   drastically change the number of required participants. No problem here.
 
-  ")
+  \n")
 }

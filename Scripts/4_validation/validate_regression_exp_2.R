@@ -1,7 +1,11 @@
 validate_regression <- function(reproduced_dat_exp_1,
                                 reproduced_dat_exp_2)
 {
-  # TODO
+  # In Experiment 1, we do not find pattern reported from Experiment 2:
+  # Although Anxious-Depression (AD) is also associated with lower mean
+  # confidences, two things are different. First, Compulsivness (C) is not
+  # positively associated with mean confidences. Second, Social Withdrawal
+  # (SW) is also negatively associated with mean confidences.
   get_regression_coefficients(reproduced_dat_exp_1)
 
   # Individual correlation tests yield the same picture.
@@ -9,39 +13,18 @@ validate_regression <- function(reproduced_dat_exp_1,
   # zung (Depression) & anxiety (Social Anxiety) - Anxious-Depression (AD)
   # ocir (Obsessive-Compulsive Inventory-Revised) - Compulsivness (C)
   # liebowitz (Social Anxiety) - Social Withdrawal (SW)
-  cor.test(reproduced_dat_exp_1$zung     , reproduced_dat_exp_1$accuracy) # p = .99
-  cor.test(reproduced_dat_exp_1$anxiety  , reproduced_dat_exp_1$accuracy) # p = .94
-  cor.test(reproduced_dat_exp_1$ocir     , reproduced_dat_exp_1$accuracy) # p = .73
-  cor.test(reproduced_dat_exp_1$liebowitz, reproduced_dat_exp_1$accuracy) # p = .52
+  get_regression_coefficients(reproduced_dat_exp_1, 
+                              regressor  = c("z_zung", "z_anxiety", "z_ocir", "z_liebowitz"),
+                              regressand = c("z_accuracy", "z_mean_confidence", "z_m_ratio"))
 
-  cor.test(reproduced_dat_exp_1$zung     , reproduced_dat_exp_1$mean_confidence) # p = .01 -> -.13
-  cor.test(reproduced_dat_exp_1$anxiety  , reproduced_dat_exp_1$mean_confidence) # p = .01 -> -.11
-  cor.test(reproduced_dat_exp_1$ocir     , reproduced_dat_exp_1$mean_confidence) # p = .77
-  cor.test(reproduced_dat_exp_1$liebowitz, reproduced_dat_exp_1$mean_confidence) # p = .01 -> -.12
-
-  cor.test(reproduced_dat_exp_1$zung     , reproduced_dat_exp_1$m_ratio) # p = .03 -> -.09
-  cor.test(reproduced_dat_exp_1$anxiety  , reproduced_dat_exp_1$m_ratio) # p = .08
-  cor.test(reproduced_dat_exp_1$ocir     , reproduced_dat_exp_1$m_ratio) # p = .74
-  cor.test(reproduced_dat_exp_1$liebowitz, reproduced_dat_exp_1$m_ratio) # p = .49
 
   # In Experiment 2, we indeed find the reported pattern. AD is associated
   # with lower mean confidences and C with higher confidences.
   get_regression_coefficients(reproduced_dat_exp_2)
 
-  cor.test(reproduced_dat_exp_2$zung     , reproduced_dat_exp_2$accuracy) # p = .61
-  cor.test(reproduced_dat_exp_2$anxiety  , reproduced_dat_exp_2$accuracy) # p = .35
-  cor.test(reproduced_dat_exp_2$ocir     , reproduced_dat_exp_2$accuracy) # p = .88
-  cor.test(reproduced_dat_exp_2$liebowitz, reproduced_dat_exp_2$accuracy) # p = .66
-
-  cor.test(reproduced_dat_exp_2$zung     , reproduced_dat_exp_2$mean_confidence) # p = .64
-  cor.test(reproduced_dat_exp_2$anxiety  , reproduced_dat_exp_2$mean_confidence) # p = .07 -> r = -.08
-  cor.test(reproduced_dat_exp_2$ocir     , reproduced_dat_exp_2$mean_confidence) # p = .03 -> r = +.09
-  cor.test(reproduced_dat_exp_2$liebowitz, reproduced_dat_exp_2$mean_confidence) # p = .36
-
-  cor.test(reproduced_dat_exp_2$zung     , reproduced_dat_exp_2$m_ratio) # p = .93
-  cor.test(reproduced_dat_exp_2$anxiety  , reproduced_dat_exp_2$m_ratio) # p = .26
-  cor.test(reproduced_dat_exp_2$ocir     , reproduced_dat_exp_2$m_ratio) # p = .46
-  cor.test(reproduced_dat_exp_2$liebowitz, reproduced_dat_exp_2$m_ratio) # p = .88
+  get_regression_coefficients(reproduced_dat_exp_2, 
+                              regressor  = c("z_zung", "z_anxiety", "z_ocir", "z_liebowitz"),
+                              regressand = c("z_accuracy", "z_mean_confidence", "z_m_ratio"))
 
   # There may also be a problem with regard to the factor solution, which
   # could be less stable than the authors assumed. I perform a
@@ -57,6 +40,7 @@ validate_regression <- function(reproduced_dat_exp_1,
                                                           should_return_loadings = TRUE)
   validate_factor_analysis_overfit(reproduced_dat = reproduced_dat_exp_2,
                                    reference_loadings)
+
 
   cat("Factor Analysis and Regression 
 
@@ -77,5 +61,5 @@ validate_regression <- function(reproduced_dat_exp_1,
   for covariates gender, age, and IQ which is not reflected in these
   correlations.)
   
-  ")
+  \n")
 }

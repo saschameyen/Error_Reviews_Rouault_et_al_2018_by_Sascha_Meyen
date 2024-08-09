@@ -21,5 +21,5 @@ validate_exclusions <- function(full_perceptual_task_dat_exp_1,
   paper. But these exclusions seem to be very minor with less than 2% of the
   trials being excluded.
 
-  ")
+  \n")
 }

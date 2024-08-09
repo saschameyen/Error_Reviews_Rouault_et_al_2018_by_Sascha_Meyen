@@ -56,5 +56,5 @@ validate_model_comparison <- function(reproduced_dat_exp_2,
   qualitative pattern of results is very consistent with what the authors
   report.
 
-  ")
+  \n")
 }

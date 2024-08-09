@@ -33,7 +33,7 @@ validate_DDM_fit <- function(original_dat_exp_2, full_perceptual_task_dat_exp_2)
   stimulus presentation time (for the DDM fit) and without (for compiling the
   data set).
 
-  ")
+  \n")
 }
 
 inspect_participant <- function(original_dat_exp_2            , 

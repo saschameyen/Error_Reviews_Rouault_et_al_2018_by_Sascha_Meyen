@@ -7,7 +7,7 @@
 #" 
 ################################################################################
 
-verbose <- TRUE
+verbose <- FALSE
 
 # Find all .R files in subdirectories
 R_files <- list.files(path         = c("Scripts", "Utilities"), 
