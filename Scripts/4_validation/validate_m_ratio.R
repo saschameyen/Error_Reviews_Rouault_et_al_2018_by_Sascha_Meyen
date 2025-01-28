@@ -9,22 +9,18 @@ validate_m_ratio <- function(original_dat_exp_2,
   plot(original_dat_exp_2$mRatio, reproduced_dat_exp_2$m_ratio)
   cor(original_dat_exp_2$mRatio, reproduced_dat_exp_2$m_ratio)
 
-  hist(original_dat_exp_2$mRatio)
-  hist(reproduced_dat_exp_2$m_ratio)
-
   # Excluding outliers, I at least get a somewhat decent correlation between
   # their fits an mine.
   s <- reproduced_dat_exp_2$m_ratio > -2.5 & reproduced_dat_exp_2$m_ratio < 5
-  plot(original_dat_exp_2$mRatio[s], reproduced_dat_exp_2$m_ratio[s])
+  plot(original_dat_exp_2$mRatio[s], m_ratios[s], 
+       xlab = "Original M-Ratio Values",
+       ylab = "Reproduced M-Ratio Values")
   cor(original_dat_exp_2$mRatio[s], reproduced_dat_exp_2$m_ratio[s])
 
   # From Matlab fit
   m_ratios <- read.csv("Input/exp_2_m_ratios.csv",
                      header = FALSE)$V1
-  plot(original_dat_exp_2$mRatio, m_ratios)
   cor(original_dat_exp_2$mRatio, m_ratios)
-
-  dev.off()
 
   cat("M-Ratio Fit
 

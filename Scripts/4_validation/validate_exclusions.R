@@ -11,7 +11,10 @@ validate_exclusions <- function(full_perceptual_task_dat_exp_1,
 
   number_of_trials_per_participant <- table(full_perceptual_task_dat_exp_2$subj_id)
   maximum_number_of_trials <- 210
-  hist(number_of_trials_per_participant)
+
+  hist(number_of_trials_per_participant, 
+       main = "",
+       xlab = "Number of Trials per Participants After Exclusion")
   mean(number_of_trials_per_participant) # 208
   quantile(number_of_trials_per_participant, c(.01, .05)) # 199, 204
 

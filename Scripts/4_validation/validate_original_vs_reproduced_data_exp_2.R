@@ -26,11 +26,9 @@ validate_original_vs_reproduced_data_exp_2 <- function(original_dat_exp_2,
   plot(original_dat_exp_2$Compul , reproduced_dat_exp_2$Compul       )
   plot(original_dat_exp_2$SW     , reproduced_dat_exp_2$SW           )
 
-  dev.off()
-
   cat("Match Between Reproduced and Original Experiment 2 Data
 
-  The extracted values look very consistent with the exception of M-Ratio
+  The values I extracted look very consistent with the exception of M-Ratio
   fits, which are different because I used a different fitting method.
 
   \n")

@@ -48,18 +48,20 @@ validate_regression <- function(reproduced_dat_exp_1,
   validation (compute factors from a training set, then compute factor scores
   and regression coefficients from a separate test set).
 
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   However for Experiment 1, the results look different. Even after matching
   the factors to those of Experiment 2, we only find partially the same
   results. Consistently, factor Anxious-Depression (AD) has a negative
   association with mean confidence. But there is no positive association
   between factor Compulsivity (C) and mean confidence. Moreover,
-  Social-Withdrawal (SW) also has a clera negative association with mean
+  Social-Withdrawal (SW) also has a clear negative association with mean
   confidence. This also shows up in the cross validation analysis.
 
   Additionally, correlation analyses based on single questionnaires seem to
   support these findings. (But note that the regression analyses controlled
   for covariates gender, age, and IQ which is not reflected in these
   correlations.)
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
   \n")
 }

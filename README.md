@@ -1,6 +1,14 @@
-Run the R file in the root folder (reanalyse_rouault_et_al.R). The working directory must be in that folder too. For inspection of the validation scripts, navigate to the respective script in Scripts/validation/.
+Run the R file in the root folder (reanalyse_rouault_et_al.R). The working
+directory must be in that folder too. For inspection of the validation
+scripts, navigate to the respective script in Scripts/validation/.
 
-For an easy access to the results that you should see if you run these scripts, here is the output it generates for me:
+For an easy access to the results that you should see if you run these
+scripts, here is the output it generates for me. Also see the most important
+reanalysis plot in file "factor_loadings_exp_1_and_2.pdf" where it is shown
+that the factor solution for Experiment 1 (which was not shown in the
+original study) looks similar to that of Experiment 2. However, despite this
+match, the relation to confidences are only partially replicated: In
+Experiment 1, the factor Implusivity did not coincide with overconfidence.
 
 ```
 #  -----------------------------------------------------------------------------
@@ -116,7 +124,7 @@ Factor Analysis and Regression
   results. Consistently, factor Anxious-Depression (AD) has a negative           
   association with mean confidence. But there is no positive association         
   between factor Compulsivity (C) and mean confidence. Moreover,                 
-  Social-Withdrawal (SW) also has a clera negative association with mean         
+  Social-Withdrawal (SW) also has a clear negative association with mean         
   confidence. This also shows up in the cross validation analysis.               
                                                                                  
   Additionally, correlation analyses based on single questionnaires seem to      

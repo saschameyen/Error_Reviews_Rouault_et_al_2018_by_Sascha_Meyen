@@ -37,8 +37,6 @@ validate_factor_analysis <- function(reproduced_dat_exp_1,
   # Visualize
   visualize_factor_loadings(loadings_1_sorted, loadings_2)
   
-  dev.off()
-
   cat("Factor Analysis in Experiment 1
 
   The factor solution of Experiment 1 mirrors that of Experiment 2. There are

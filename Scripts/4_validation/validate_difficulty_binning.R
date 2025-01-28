@@ -7,27 +7,33 @@ validate_difficulty_binning <- function(full_perceptual_task_dat_exp_1)
   coherence_accuracy_dat <- aggregate(data = full_perceptual_task_dat_exp_1, 
                                       correct ~ stimdevi                   , 
                                       mean                                 )
-  plot(coherence_accuracy_dat)
+  plot(coherence_accuracy_dat,
+       xlab = "Stimulus difficulty (stimdevi)",
+       ylab = "Accuracy")
 
   coherence_rt_dat <- aggregate(data = full_perceptual_task_dat_exp_1, 
                                 rt ~ stimdevi                        , 
                                 mean                                 )
-  plot(coherence_rt_dat)
+  plot(coherence_rt_dat,
+       xlab = "Stimulus difficulty (stimdevi)",
+       ylab = "Response Time")
 
   # Accuracy and confidence histograms are also comparable to what the authors
   # produced although I don't quite know their binning scheme.
   accuracies <- aggregate(data = full_perceptual_task_dat_exp_1,
                           correct ~ subj_id                    ,
                           mean                                 )$correct
-  hist(accuracies, seq(0.5, 1, .015))
+  hist(accuracies, seq(0.5, 1, .015),
+       xlab = "Accuracy")
 
   confidences <- aggregate(data = full_perceptual_task_dat_exp_1,
                            new_confid ~ subj_id                 ,
                            mean                                 )$new_confid
   confidences <- confidences / 6
-  hist(confidences, seq(0, 1, .015))
+  hist(confidences, seq(0, 1, .015),
+       xlab = "Confidence")
 
-  dev.off()
+  # dev.off()
   
 
   cat("Binning of Stimulus Difficulty

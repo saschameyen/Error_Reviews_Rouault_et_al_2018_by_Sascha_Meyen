@@ -21,8 +21,6 @@ validate_DDM_fit <- function(original_dat_exp_2, full_perceptual_task_dat_exp_2)
                       full_perceptual_task_dat_exp_2,
                       i_participant                 )
 
-  dev.off()
-
   cat("Drift-Diffusion-Model Fit
 
   I could not reproduce the drift-diffusion model (DDM) fits with their
